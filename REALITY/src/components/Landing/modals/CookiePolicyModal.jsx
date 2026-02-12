@@ -1,87 +1,141 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, Cookie, Settings2, BarChart3, Shield, Smartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { name } from '../../../config/constants';
+import './Modal.css';
 
 const CookiePolicyModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
+    const sections = [
+        {
+            icon: Cookie,
+            title: "What are Cookies?",
+            items: [
+                "Small text files stored on your device to enhance platform performance",
+                "Cookies help us remember your preferences and construction site settings",
+                "They allow us to provide a seamless transition between project sessions"
+            ]
+        },
+        {
+            icon: Settings2,
+            title: "Types of Cookies We Use",
+            items: [
+                "Essential: Required for secure login and platform navigation",
+                "Preference: Remember your interface language and dark mode settings",
+                "Performance: Help us understand how builders interact with AI features",
+                "Functionality: Store temporary site data for real-time cost analysis"
+            ]
+        },
+        {
+            icon: Smartphone,
+            title: "Local Storage Usage",
+            items: [
+                "We use browser local storage for faster data retrieval of active projects",
+                "Persistent session tokens to keep you logged in safely",
+                "Temporary caching of blueprint metadata for offline viewing",
+                "User interface state preservation (e.g., collapsed sidebar state)"
+            ]
+        },
+        {
+            icon: BarChart3,
+            title: "Third-Party Analytics",
+            items: [
+                "Anonymous usage tracking to improve our infrastructure AI models",
+                "Error reporting tools to ensure high availability of site monitoring",
+                "Aggregated data to understand regional construction trends",
+                "No third-party advertising cookies are used on our platform"
+            ]
+        },
+        {
+            icon: Shield,
+            title: "Your Choices & Control",
+            items: [
+                "You can disable cookies through your browser privacy settings",
+                "Managing preferences specifically for AI-AUTO via account dashboard",
+                "Note: Disabling essential cookies may affect planning accuracy",
+                "Clear your browser cache anytime to remove all local site data"
+            ]
+        }
+    ];
+
     return (
-        <AnimatePresence>
-            <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden flex flex-col shadow-2xl border border-gray-200 dark:border-white/10"
-                >
-                    <div className="p-6 border-b border-gray-200 dark:border-white/10 flex justify-between items-center bg-gradient-to-r from-purple-50 to-blue-50 dark:from-slate-800 dark:to-slate-800">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Cookie Policy</h2>
-                        <button
-                            onClick={onClose}
-                            className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full text-gray-600 dark:text-gray-400 transition-colors"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
+        <div className="modal-overlay">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="modal-content"
+            >
+                {/* Header */}
+                <div className="modal-header policy-header">
+                    <div className="flex items-center gap-3">
+                        <div className="policy-icon-badge cookie-theme-bg">
+                            <Cookie className="w-6 h-6 cookie-theme-color" />
+                        </div>
+                        <div>
+                            <h2 className="modal-title">Cookie Policy</h2>
+                            <p className="footer-note">Last Updated: February 12, 2026</p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="modal-close-btn"
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="modal-body custom-scrollbar">
+                    {/* Introduction */}
+                    <div className="policy-intro">
+                        <p>
+                            {name} uses cookies and similar technologies to enhance your experience. This policy explains what these technologies are and why we use them to power our construction management platform.
+                        </p>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4 text-gray-700 dark:text-gray-300">
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What Are Cookies?</h3>
-                            <p>
-                                Cookies are small text files that are placed on your device when you visit Reality-OS. They help us provide you with a better experience and allow certain features to function properly.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How We Use Cookies</h3>
-                            <p>
-                                We use cookies to understand how you use our platform, remember your preferences, and improve your experience. This includes essential cookies for functionality and analytics cookies for performance monitoring.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Types of Cookies We Use</h3>
-                            <ul className="list-disc list-inside space-y-2">
-                                <li><strong>Essential Cookies:</strong> Required for the platform to function properly</li>
-                                <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our platform</li>
-                                <li><strong>Functionality Cookies:</strong> Remember your preferences and settings</li>
+                    {/* Sections */}
+                    {sections.map((section, index) => (
+                        <div key={index} className="policy-card">
+                            <div className="card-icon-title">
+                                <div className="card-icon-wrapper cookie-theme-bg">
+                                    <section.icon className="w-5 h-5 cookie-theme-color" />
+                                </div>
+                                <h3 className="card-title">{section.title}</h3>
+                            </div>
+                            <ul className="policy-list">
+                                {section.items.map((item, idx) => (
+                                    <li key={idx} className="policy-list-item">
+                                        <span className="cookie-theme-color policy-bullet">•</span>
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
                             </ul>
-                        </section>
+                        </div>
+                    ))}
 
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Managing Cookies</h3>
-                            <p>
-                                You can control and manage cookies through your browser settings. Please note that disabling certain cookies may affect the functionality of Reality-OS.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Updates to This Policy</h3>
-                            <p>
-                                We may update this Cookie Policy from time to time. Any changes will be posted on this page with an updated revision date.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Contact Us</h3>
-                            <p>
-                                If you have questions about our use of cookies, please contact us at admin@uwo24.com.
-                            </p>
-                        </section>
+                    {/* Contact */}
+                    <div className="policy-contact">
+                        <h3 className="card-title">Cookie Preferences?</h3>
+                        <div className="contact-details">
+                            <p><strong>Email:</strong> <a href="mailto:admin@uwo24.com">admin@uwo24.com</a></p>
+                            <p><strong>Phone:</strong> <a href="tel:+918358990909">+91 83589 90909</a></p>
+                        </div>
                     </div>
+                </div>
 
-                    <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-slate-800 text-center">
-                        <button
-                            onClick={onClose}
-                            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:opacity-90 transition-all shadow-lg"
-                        >
-                            Close
-                        </button>
-                    </div>
-                </motion.div>
-            </div>
-        </AnimatePresence>
+                {/* Footer */}
+                <div className="modal-footer">
+                    <button
+                        onClick={onClose}
+                        className="modal-action-btn"
+                    >
+                        Close
+                    </button>
+                </div>
+            </motion.div>
+        </div>
     );
 };
 

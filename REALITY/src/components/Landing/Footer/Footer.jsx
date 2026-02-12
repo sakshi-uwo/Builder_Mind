@@ -41,7 +41,7 @@ const Footer = () => {
         try {
             // Note: In a real app, you'd get the user ID from context/store
             await axios.post(apis.support, {
-                email: "guest@reality-os.com",
+                email: "guest@ai-auto.com",
                 issueType,
                 message: issueText,
                 userId: null
@@ -163,7 +163,7 @@ const Footer = () => {
             {/* FAQ Modal */}
             <AnimatePresence>
                 {isFaqOpen && (
-                    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                    <div className="modal-overlay">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -196,14 +196,14 @@ const Footer = () => {
                             <div className="faq-modal-body">
                                 {activeTab === 'faq' ? (
                                     <div className="faq-list">
-                                        <p className="faq-subtitle">Everything you need to know about {name}.</p>
+                                        <p className="faq-subtitle">Get quick answers to common questions about our platform</p>
                                         {faqs.map((faq, index) => (
                                             <div key={index} className="faq-item">
                                                 <button
                                                     onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                                                     className="faq-question-btn"
                                                 >
-                                                    <span>{faq.question}</span>
+                                                    <span className="faq-question-text">{faq.question}</span>
                                                     {openFaqIndex === index ? (
                                                         <ChevronUp className="faq-chevron" />
                                                     ) : (
@@ -223,7 +223,7 @@ const Footer = () => {
                                 ) : (
                                     <div className="help-form">
                                         <div className="form-group">
-                                            <label>Select Category</label>
+                                            <label>Select Issue Category</label>
                                             <div className="custom-select-wrapper">
                                                 <select
                                                     value={issueType}
@@ -241,7 +241,7 @@ const Footer = () => {
                                             <label>Describe Your Issue</label>
                                             <textarea
                                                 className="form-textarea"
-                                                placeholder="Tell us what's happening..."
+                                                placeholder="Please provide details about the problem you are facing..."
                                                 value={issueText}
                                                 onChange={(e) => setIssueText(e.target.value)}
                                             />
@@ -256,22 +256,22 @@ const Footer = () => {
                                             ) : (
                                                 <>
                                                     <HelpCircle className="w-5 h-5" />
-                                                    Submit Ticket
+                                                    Submit Support
                                                 </>
                                             )}
                                         </button>
                                         {sendStatus === 'success' && (
                                             <div className="status-msg success">
-                                                Support ticket created successfully!
+                                                Ticket Submitted Successfully! Our team will contact you soon.
                                             </div>
                                         )}
                                         {sendStatus === 'error' && (
                                             <div className="status-msg error">
-                                                Failed to send ticket. Please try again.
+                                                Failed to submit ticket. Please try again or email us directly.
                                             </div>
                                         )}
                                         <p className="form-footer-note">
-                                            Or email us at <a href="mailto:admin@uwo24.com">admin@uwo24.com</a>
+                                            Or email us directly at <a href="mailto:admin@uwo24.com">admin@uwo24.com</a>
                                         </p>
                                     </div>
                                 )}

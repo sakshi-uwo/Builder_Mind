@@ -1,37 +1,44 @@
 import React from 'react';
+import { Rocket, Bot, Shield, Globe, Zap, Palette } from 'lucide-react';
 import './Features.css';
 
 const Features = () => {
     const features = [
         {
-            icon: '🚀',
+            icon: <Rocket className="w-12 h-12 text-blue-400" />,
             title: 'Next-Gen Performance',
-            description: 'Lightning-fast processing with optimized resource management and AI-powered efficiency.'
+            description: 'Lightning-fast processing with optimized resource management and AI-powered efficiency.',
+            color: 'blue'
         },
         {
-            icon: '🤖',
+            icon: <Bot className="w-12 h-12 text-cyan-400" />,
             title: 'AI-Powered Intelligence',
-            description: 'Built-in AI assistance that learns and adapts to your workflow for maximum productivity.'
+            description: 'Built-in AI assistance that learns and adapts to your workflow for maximum productivity.',
+            color: 'cyan'
         },
         {
-            icon: '🔒',
+            icon: <Shield className="w-12 h-12 text-yellow-400" />,
             title: 'Advanced Security',
-            description: 'Enterprise-grade encryption and multi-layer security protocols to protect your data.'
+            description: 'Enterprise-grade encryption and multi-layer security protocols to protect your data.',
+            color: 'yellow'
         },
         {
-            icon: '🌐',
+            icon: <Globe className="w-12 h-12 text-blue-500" />,
             title: 'Seamless Integration',
-            description: 'Connect with any platform, device, or service effortlessly with universal compatibility.'
+            description: 'Connect with any platform, device, or service effortlessly with universal compatibility.',
+            color: 'blue'
         },
         {
-            icon: '⚡',
+            icon: <Zap className="w-12 h-12 text-yellow-500" />,
             title: 'Real-Time Sync',
-            description: 'Instant synchronization across all your devices with zero latency.'
+            description: 'Instant synchronization across all your devices with zero latency.',
+            color: 'yellow'
         },
         {
-            icon: '🎨',
+            icon: <Palette className="w-12 h-12 text-purple-400" />,
             title: 'Customizable Interface',
-            description: 'Design your perfect workspace with unlimited customization options and themes.'
+            description: 'Design your perfect workspace with unlimited customization options and themes.',
+            color: 'purple'
         }
     ];
 
@@ -39,11 +46,11 @@ const Features = () => {
         <section className="features" id="features">
             <div className="container">
                 <div className="features-header">
-                    <h2 className="section-title">
-                        Powerful <span className="text-gradient">Features</span>
+                    <h2 className="section-title uppercase">
+                        POWERFUL <span className="text-gradient">FEATURES</span>
                     </h2>
-                    <p className="section-subtitle">
-                        Everything you need to work smarter, faster, and better
+                    <p className="section-subtitle uppercase">
+                        EVERYTHING YOU NEED TO WORK SMARTER, FASTER, AND BETTER
                     </p>
                 </div>
 
@@ -51,10 +58,12 @@ const Features = () => {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="feature-card glass card"
+                            className={`feature-card glass card hover-scale`}
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            <div className="feature-icon">{feature.icon}</div>
+                            <div className={`feature-icon-wrapper ${feature.color}-glow`}>
+                                {feature.icon}
+                            </div>
                             <h3 className="feature-title">{feature.title}</h3>
                             <p className="feature-description">{feature.description}</p>
                         </div>

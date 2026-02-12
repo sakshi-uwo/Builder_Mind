@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SquaresFour, Buildings, UsersThree, CalendarCheck, Gear, SignOut, Cube, Brain } from '@phosphor-icons/react';
 
 const Sidebar = ({ currentPage, setCurrentPage, onLogout }) => {
+    const navigate = useNavigate();
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', icon: <SquaresFour size={24} /> },
         { id: 'projects', label: 'Projects', icon: <Buildings size={24} /> },
@@ -38,11 +40,14 @@ const Sidebar = ({ currentPage, setCurrentPage, onLogout }) => {
 
     return (
         <aside style={sidebarStyle}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', fontWeight: 700, marginBottom: '3rem' }}>
+            <div
+                style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', fontWeight: 700, marginBottom: '3rem', cursor: 'pointer' }}
+                onClick={() => navigate('/')}
+            >
                 <div style={{ width: '32px', height: '32px', background: 'var(--pivot-blue-light)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px var(--pivot-blue-light)' }}>
                     <Cube size={20} weight="bold" color="white" />
                 </div>
-                <span>REALITY-OS</span>
+                <span>AI-Auto</span>
             </div>
 
             <nav style={{ flex: 1 }}>

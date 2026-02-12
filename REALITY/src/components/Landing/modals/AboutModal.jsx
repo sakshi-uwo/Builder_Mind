@@ -1,84 +1,144 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+    Bot, X, Sparkles, MessageSquare, FileText, Cloud,
+    Camera, Mic, Share2, Scan, FileDiff, Search
+} from 'lucide-react';
+import { name } from '../../../config/constants';
+import './Modal.css';
 
 const AboutModal = ({ isOpen, onClose }) => {
+    const navigate = useNavigate();
+
     if (!isOpen) return null;
 
+    const sections = [
+        {
+            title: "Core Intelligence",
+            icon: <Bot className="w-5 h-5 privacy-theme-color" />,
+            content: `${name} is powered by advanced AI systems enabling context-aware infrastructure planning, multi-modal understanding, and real-time site monitoring.`
+        },
+        {
+            title: `Why ${name} Exists`,
+            icon: <Sparkles className="w-5 h-5 cookie-theme-color" />,
+            content: "Modern construction projects involve too many moving parts. AI-AUTO solves this by offering one intelligent platform for all tasks: faster workflows, smarter cost estimation, and real-world efficiency."
+        }
+    ];
+
+    const features = [
+        { title: "Smart Planning", icon: <MessageSquare className="w-4 h-4" />, desc: "Intelligent scheduling that adapts to project changes." },
+        { title: "Cost Analysis", icon: <FileText className="w-4 h-4" />, desc: "Upload blueprints and get instant material estimates." },
+        { title: "Site Vision", icon: <Camera className="w-4 h-4" />, desc: "Analyze site photos to track progress automatically." },
+        { title: "Cloud Integration", icon: <Cloud className="w-4 h-4" />, desc: "Sync your project documents across all devices." },
+        { title: "Live Monitoring", icon: <Scan className="w-4 h-4" />, desc: "Real-time updates from your construction site." },
+        { title: "Voice Control", icon: <Mic className="w-4 h-4" />, desc: "Update project status hands-free on the field." },
+        { title: "Report Generation", icon: <Share2 className="w-4 h-4" />, desc: "Create professional PDF reports in seconds." },
+        { title: "Document Sync", icon: <FileDiff className="w-4 h-4" />, desc: "Keep all your site plans and versions in one place." },
+        { title: "Smart Analytics", icon: <Search className="w-4 h-4" />, desc: "Deep search through your entire project history." }
+    ];
+
     return (
-        <AnimatePresence>
-            <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden flex flex-col shadow-2xl border border-gray-200 dark:border-white/10"
-                >
-                    <div className="p-6 border-b border-gray-200 dark:border-white/10 flex justify-between items-center bg-gradient-to-r from-purple-50 to-blue-50 dark:from-slate-800 dark:to-slate-800">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">About Reality-OS</h2>
-                        <button
-                            onClick={onClose}
-                            className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full text-gray-600 dark:text-gray-400 transition-colors"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
+        <div className="modal-overlay">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="modal-content about-modal-content"
+            >
+                {/* Header */}
+                <div className="about-header">
+                    <div className="about-header-pattern" />
+                    <div className="about-header-glow" />
+
+                    <button
+                        onClick={onClose}
+                        className="modal-close-btn"
+                        style={{ position: 'absolute', top: '1rem', right: '1rem', color: 'white', backgroundColor: 'rgba(255,255,255,0.1)' }}
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+
+                    <div className="about-header-badge">
+                        <Sparkles className="w-4 h-4" style={{ color: '#fbbf24' }} />
+                        <span>Next-Gen Construction Platform</span>
+                    </div>
+                    <h2>{name} <sup>TM</sup></h2>
+                    <p>Artificial Intelligence Powered Infrastructure</p>
+                </div>
+
+                {/* Scrollable Body */}
+                <div className="about-body custom-scrollbar">
+                    {/* Intro Section */}
+                    <div className="about-intro">
+                        <p>
+                            A seamless, intelligent workspace designed to plan, monitor, and optimize construction projects. Experience the power of AI-driven cost estimation and real-time project management in one fluid interface.
+                        </p>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4 text-gray-700 dark:text-gray-300">
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Our Mission</h3>
-                            <p>
-                                Reality-OS is dedicated to revolutionizing construction management through artificial intelligence. We empower builders and developers to streamline their projects, enhance productivity, and unlock new possibilities with cutting-edge AI technology.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What We Offer</h3>
-                            <p>
-                                Our platform provides intelligent construction management solutions designed to adapt to your project needs. From simple planning to complex site monitoring, Reality-OS delivers powerful tools in an intuitive interface.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Our Technology</h3>
-                            <p>
-                                Built on advanced AI models and modern web technologies, Reality-OS combines speed, reliability, and intelligence. We continuously innovate to bring you the latest advancements in AI-powered infrastructure.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Our Commitment</h3>
-                            <p>
-                                We are committed to your privacy, security, and success. Your data is protected with enterprise-grade security, and our team is dedicated to providing exceptional support and continuous improvement.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Get in Touch</h3>
-                            <p>
-                                Have questions or feedback? We'd love to hear from you. Reach out to us at admin@uwo24.com or call us at +91 83589 90909.
-                            </p>
-                        </section>
-
-                        <section className="text-center pt-4">
-                            <p className="text-sm italic text-gray-500 dark:text-gray-400">
-                                Powered by UWO24 Technologies
-                            </p>
-                        </section>
+                    {/* Core Sections Grid */}
+                    <div className="about-sections-grid">
+                        {sections.map((sec, i) => (
+                            <div key={i} className="about-card">
+                                <div className="card-icon-title">
+                                    <div className="card-icon-wrapper">
+                                        {sec.icon}
+                                    </div>
+                                    <h3 className="card-title">{sec.title}</h3>
+                                </div>
+                                <p className="card-content">
+                                    {sec.content}
+                                </p>
+                            </div>
+                        ))}
                     </div>
 
-                    <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-slate-800 text-center">
-                        <button
-                            onClick={onClose}
-                            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:opacity-90 transition-all shadow-lg"
-                        >
-                            Close
-                        </button>
+                    {/* Features Grid */}
+                    <div className="features-section">
+                        <h3 className="features-header">Powerhouse Features</h3>
+                        <div className="features-grid">
+                            {features.map((feat, i) => (
+                                <div key={i} className="feature-item">
+                                    <div className="feature-icon-wrapper">
+                                        {feat.icon}
+                                    </div>
+                                    <div className="feature-text">
+                                        <h4 className="feature-title">{feat.title}</h4>
+                                        <p className="feature-desc">{feat.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </motion.div>
-            </div>
-        </AnimatePresence>
+
+                    {/* Efficiency Section */}
+                    <div className="efficiency-section">
+                        <h3 className="efficiency-title">Built for Efficiency</h3>
+                        <div className="efficiency-badges">
+                            {["🏗️ Builders", "👷 Project Managers", "🏠 Developers", "📐 Architects", "🌍 Infrastructure Experts"].map((label, i) => (
+                                <span key={i} className="badge-item">
+                                    {label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Footer CIA */}
+                <div className="modal-footer cta-footer">
+                    <p className="footer-note">One Intelligent Platform. Unlimited Possibilities.</p>
+                    <button
+                        onClick={() => {
+                            onClose();
+                            navigate('/dashboard');
+                        }}
+                        className="modal-action-btn"
+                    >
+                        Explore Now
+                    </button>
+                </div>
+            </motion.div>
+        </div>
     );
 };
 

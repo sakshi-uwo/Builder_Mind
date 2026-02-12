@@ -32,7 +32,7 @@ const CostEstimation = () => {
         <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '0.5rem' }}>AI Cost Estimation</h1>
-                <p style={{ color: 'var(--text-dim)' }}>Predict project costs and material needs using Reality-OS AI.</p>
+                <p style={{ color: 'var(--text-dim)' }}>Predict project costs and material needs using AI-AUTO AI.</p>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>

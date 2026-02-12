@@ -28,7 +28,7 @@ const Settings = ({ theme: currentTheme, setTheme }) => {
                             </div>
                             <div className="input-group">
                                 <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, marginBottom: '6px' }}>Email Address</label>
-                                <input type="email" defaultValue="admin@reality-os.com" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'var(--white)', color: 'var(--text-main)' }} />
+                                <input type="email" defaultValue="admin@ai-auto.com" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'var(--white)', color: 'var(--text-main)' }} />
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ const Settings = ({ theme: currentTheme, setTheme }) => {
         <div style={{ padding: '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: '1.8rem', fontWeight: 700 }}>System Settings</h1>
-                <p style={{ color: 'var(--charcoal)', fontSize: '0.9rem', marginTop: '5px' }}>Configure your Reality-OS environment and account security.</p>
+                <p style={{ color: 'var(--charcoal)', fontSize: '0.9rem', marginTop: '5px' }}>Configure your AI-AUTO environment and account security.</p>
             </div>
 
             <div className="card" style={{ flex: 1, display: 'flex', padding: 0, overflow: 'hidden' }}>

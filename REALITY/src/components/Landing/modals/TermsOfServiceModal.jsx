@@ -1,80 +1,114 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, Scale, FileText, DollarSign, Shield, AlertCircle, UserX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { name } from '../../../config/constants';
 
 const TermsOfServiceModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
+    const sections = [
+        {
+            icon: Scale,
+            title: "Acceptance of Terms",
+            content: `By accessing or using ${name}, you agree to be bound by these Terms of Service. If you do not agree to all terms, you may not access or use our services. These terms apply to all visitors, builders, and project managers.`
+        },
+        {
+            icon: FileText,
+            title: "User Responsibilities",
+            content: "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate project data and maintain the security of your site monitoring feeds."
+        },
+        {
+            icon: DollarSign,
+            title: "Payments & Subscriptions",
+            content: "Certain features of the Platform require payment. All fees are non-refundable unless required by law. We reserve the right to change our pricing upon notice. Subscription renewals are processed automatically unless cancelled."
+        },
+        {
+            icon: Shield,
+            title: "Intellectual Property",
+            content: "The Platform and its original content, features, and functionality (including AI models) are owned by AI-AUTO and are protected by international copyright, trademark, and other intellectual property laws."
+        },
+        {
+            icon: UserX,
+            title: "Account Termination",
+            content: "We may terminate or suspend your account immediately, without prior notice or liability, for any reason, including without limitation if you breach the Terms. Upon termination, your right to use the service will cease immediately."
+        },
+        {
+            icon: AlertCircle,
+            title: "Limitation of Liability",
+            content: `${name} shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use or inability to use the service, including site delays or project estimation variances.`
+        }
+    ];
+
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <div className="modal-overlay">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden flex flex-col shadow-2xl border border-gray-200 dark:border-white/10"
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                    className="modal-content"
                 >
-                    <div className="p-6 border-b border-gray-200 dark:border-white/10 flex justify-between items-center bg-gradient-to-r from-purple-50 to-blue-50 dark:from-slate-800 dark:to-slate-800">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Terms of Service</h2>
+                    {/* Header */}
+                    <div className="modal-header policy-header">
+                        <div className="flex items-center gap-3">
+                            <div className="policy-icon-badge terms-theme-bg">
+                                <Scale className="w-6 h-6 terms-theme-color" />
+                            </div>
+                            <div>
+                                <h2 className="modal-title">Terms of Service</h2>
+                                <p className="footer-note">Effective Date: February 12, 2026</p>
+                            </div>
+                        </div>
                         <button
                             onClick={onClose}
-                            className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full text-gray-600 dark:text-gray-400 transition-colors"
+                            className="modal-close-btn"
                         >
                             <X className="w-6 h-6" />
                         </button>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4 text-gray-700 dark:text-gray-300">
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Acceptance of Terms</h3>
+                    {/* Content */}
+                    <div className="modal-body custom-scrollbar">
+                        {/* Intro */}
+                        <div className="policy-intro">
                             <p>
-                                By accessing and using Reality-OS, you accept and agree to be bound by the terms and provisions of this agreement.
+                                Welcome to {name}. Our Terms of Service are designed to ensure a secure, efficient, and transparent environment for construction infrastructure planning and management.
                             </p>
-                        </section>
+                        </div>
 
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Use License</h3>
-                            <p>
-                                Permission is granted to temporarily use Reality-OS for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
-                            </p>
-                        </section>
+                        {/* Sections */}
+                        {sections.map((section, index) => (
+                            <div key={index} className="policy-card">
+                                <div className="card-icon-title">
+                                    <div className="card-icon-wrapper terms-theme-bg">
+                                        <section.icon className="w-5 h-5 terms-theme-color" />
+                                    </div>
+                                    <h3 className="card-title">{section.title}</h3>
+                                </div>
+                                <p className="card-content" style={{ paddingLeft: '0' }}>
+                                    {section.content}
+                                </p>
+                            </div>
+                        ))}
 
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Disclaimer</h3>
-                            <p>
-                                The materials on Reality-OS are provided on an 'as is' basis. Reality-OS makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Limitations</h3>
-                            <p>
-                                In no event shall Reality-OS or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use Reality-OS.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Revisions</h3>
-                            <p>
-                                Reality-OS may revise these terms of service at any time without notice. By using this platform, you are agreeing to be bound by the current version of these terms.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Governing Law</h3>
-                            <p>
-                                These terms and conditions are governed by and construed in accordance with applicable laws, and you irrevocably submit to the exclusive jurisdiction of the courts.
-                            </p>
-                        </section>
+                        {/* Contact for Legal */}
+                        <div className="policy-contact">
+                            <h3 className="card-title">Legal Inquiries</h3>
+                            <div className="contact-details">
+                                <p>For any legal or compliance questions, please contact our legal team at:</p>
+                                <p><strong>Email:</strong> <a href="mailto:legal@uwo24.com">legal@uwo24.com</a></p>
+                                <p><strong>Address:</strong> Raipur, Chhattisgarh, India</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-slate-800 text-center">
+                    {/* Footer */}
+                    <div className="modal-footer">
                         <button
                             onClick={onClose}
-                            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:opacity-90 transition-all shadow-lg"
+                            className="modal-action-btn"
                         >
-                            Close
+                            Accept & Close
                         </button>
                     </div>
                 </motion.div>

@@ -1,85 +1,152 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, Shield, Lock, Eye, Database, UserCheck, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { name } from '../../../config/constants';
+import './Modal.css';
 
 const PrivacyPolicyModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
+    const sections = [
+        {
+            icon: Database,
+            title: "Information We Collect",
+            items: [
+                "Account Information: Name, email, and authentication credentials",
+                "Usage Data: Interaction patterns, and preferred features used",
+                "Project Data: Project details, costs, and site monitoring data processed securely",
+                "Technical Information: Device info, browser type, IP address"
+            ]
+        },
+        {
+            icon: Lock,
+            title: "How We Use Your Information",
+            items: [
+                "Service Delivery: Contextual infrastructure planning and personalized experience",
+                "Product Improvement: Enhance AI models and develop new automation features",
+                "Communication: Updates, security alerts, and support responses",
+                "Security & Compliance: Fraud detection and legal obligations"
+            ]
+        },
+        {
+            icon: Shield,
+            title: "Data Security & Protection",
+            items: [
+                "End-to-End Encryption: Enterprise-grade protection for all communications",
+                "Isolated Environments: Each project session runs separately for privacy",
+                "Secure Storage: Enterprise servers with strict access controls",
+                "Data Retention: User-controlled project history deletion anytime"
+            ]
+        },
+        {
+            icon: Eye,
+            title: "Data Sharing & Third Parties",
+            items: [
+                "No Sale of Personal Data: Your privacy is our top priority",
+                "Service Partners: Structured processing with encryption when necessary",
+                "Infrastructure Providers: Trusted partners with confidentiality agreements",
+                "Legal Requirements: Disclosure only when required by law"
+            ]
+        },
+        {
+            icon: UserCheck,
+            title: "Your Rights & Control",
+            items: [
+                "Access & Download: View and export your data anytime",
+                "Correction & Updates: Modify your information from account settings",
+                "Deletion Rights: Remove project sessions or delete entire account",
+                "Opt-Out Options: Control marketing communications and analytics tracking"
+            ]
+        },
+        {
+            icon: FileText,
+            title: "Cookies & Tracking",
+            items: [
+                "Essential Cookies: Maintain session and platform functionality",
+                "Analytics Cookies: Understand usage with your consent to improve UI",
+                "Local Storage: Session data stored in browser for quick access",
+                "Cookie Management: Control preferences through browser settings"
+            ]
+        }
+    ];
+
     return (
-        <AnimatePresence>
-            <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden flex flex-col shadow-2xl border border-gray-200 dark:border-white/10"
-                >
-                    <div className="p-6 border-b border-gray-200 dark:border-white/10 flex justify-between items-center bg-gradient-to-r from-purple-50 to-blue-50 dark:from-slate-800 dark:to-slate-800">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Privacy Policy</h2>
-                        <button
-                            onClick={onClose}
-                            className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full text-gray-600 dark:text-gray-400 transition-colors"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
+        <div className="modal-overlay">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="modal-content"
+            >
+                {/* Header */}
+                <div className="modal-header policy-header">
+                    <div className="flex items-center gap-3">
+                        <div className="policy-icon-badge privacy-theme-bg">
+                            <Shield className="w-6 h-6 privacy-theme-color" />
+                        </div>
+                        <div>
+                            <h2 className="modal-title">Privacy Policy</h2>
+                            <p className="footer-note">Last Updated: February 12, 2026</p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="modal-close-btn"
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="modal-body custom-scrollbar">
+                    {/* Introduction */}
+                    <div className="policy-intro">
+                        <p>
+                            This Privacy Policy explains how {name} collects, uses, and protects your information. We are committed to maintaining the highest standards of privacy and security for all our users.
+                        </p>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4 text-gray-700 dark:text-gray-300">
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Introduction</h3>
-                            <p>
-                                At Reality-OS, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform.
-                            </p>
-                        </section>
+                    {/* Sections */}
+                    {sections.map((section, index) => (
+                        <div key={index} className="policy-card">
+                            <div className="card-icon-title">
+                                <div className="card-icon-wrapper privacy-theme-bg">
+                                    <section.icon className="w-5 h-5 privacy-theme-color" />
+                                </div>
+                                <h3 className="card-title">{section.title}</h3>
+                            </div>
+                            <ul className="policy-list">
+                                {section.items.map((item, idx) => (
+                                    <li key={idx} className="policy-list-item">
+                                        <span className="privacy-theme-color policy-bullet">•</span>
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
 
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Information We Collect</h3>
-                            <p>
-                                We may collect personal information such as your name, email address, and usage data when you interact with our services. This information helps us provide and improve our platform.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How We Use Your Information</h3>
-                            <p>
-                                Your information is used to operate, maintain, and improve our services, communicate with you, and ensure the security of our platform.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Data Security</h3>
-                            <p>
-                                We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Your Rights</h3>
-                            <p>
-                                You have the right to access, update, or delete your personal information. Contact us at admin@uwo24.com for any privacy-related requests.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Contact Us</h3>
-                            <p>
-                                If you have any questions about this Privacy Policy, please contact us at admin@uwo24.com or +91 83589 90909.
-                            </p>
-                        </section>
+                    {/* Contact */}
+                    <div className="policy-contact">
+                        <h3 className="card-title">Questions About Privacy?</h3>
+                        <div className="contact-details">
+                            <p><strong>Email:</strong> <a href="mailto:admin@uwo24.com">admin@uwo24.com</a></p>
+                            <p><strong>Phone:</strong> <a href="tel:+918358990909">+91 83589 90909</a></p>
+                        </div>
                     </div>
+                </div>
 
-                    <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-slate-800 text-center">
-                        <button
-                            onClick={onClose}
-                            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:opacity-90 transition-all shadow-lg"
-                        >
-                            Close
-                        </button>
-                    </div>
-                </motion.div>
-            </div>
-        </AnimatePresence>
+                {/* Footer */}
+                <div className="modal-footer">
+                    <button
+                        onClick={onClose}
+                        className="modal-action-btn"
+                    >
+                        Close
+                    </button>
+                </div>
+            </motion.div>
+        </div>
     );
 };
 
