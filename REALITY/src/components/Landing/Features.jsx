@@ -4,34 +4,34 @@ import './Features.css';
 const Features = () => {
     const features = [
         {
-            icon: '🏗️',
-            title: 'Project Planning',
-            description: 'Intelligent milestone tracking and dependency management for complex builds.'
+            icon: '🚀',
+            title: 'Next-Gen Performance',
+            description: 'Lightning-fast processing with optimized resource management and AI-powered efficiency.'
         },
         {
             icon: '🤖',
-            title: 'AI Cost Estimation',
-            description: 'Predictive analytics for accurate budgeting and material forecasting.'
+            title: 'AI-Powered Intelligence',
+            description: 'Built-in AI assistance that learns and adapts to your workflow for maximum productivity.'
         },
         {
-            icon: '📊',
-            title: 'Real-Time Tracking',
-            description: 'Monitor site progress and labor efficiency with live data streams.'
+            icon: '🔒',
+            title: 'Advanced Security',
+            description: 'Enterprise-grade encryption and multi-layer security protocols to protect your data.'
         },
         {
-            icon: '⚖️',
-            title: 'Risk Management',
-            description: 'Early alerts for schedule slippage and budget overruns to ensure delivery.'
+            icon: '🌐',
+            title: 'Seamless Integration',
+            description: 'Connect with any platform, device, or service effortlessly with universal compatibility.'
         },
         {
-            icon: '🤝',
-            title: 'Stakeholder Sync',
-            description: 'Unified platform for builders, contractors, and engineers to collaborate.'
+            icon: '⚡',
+            title: 'Real-Time Sync',
+            description: 'Instant synchronization across all your devices with zero latency.'
         },
         {
-            icon: '📱',
-            title: 'Site Intelligence',
-            description: 'Mobile-first field reporting and automated progress documentation.'
+            icon: '🎨',
+            title: 'Customizable Interface',
+            description: 'Design your perfect workspace with unlimited customization options and themes.'
         }
     ];
 

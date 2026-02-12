@@ -3,19 +3,19 @@ import './TechnologySection.css';
 
 const TechnologySection = () => {
     const stats = [
-        { value: '500+', label: 'Active Projects' },
-        { value: '98%', label: 'Forecast Accuracy' },
-        { value: '25%', label: 'Cost Reduction' },
-        { value: '24/7', label: 'Site Monitoring' }
+        { value: '10M+', label: 'Active Users' },
+        { value: '99.9%', label: 'Uptime SLA' },
+        { value: '150+', label: 'Countries' },
+        { value: '24/7', label: 'Support' }
     ];
 
     const techStack = [
-        'Proprietary ML Models',
-        'BIM Integration',
-        'IoT Site Sensors',
+        'Advanced AI Core',
+        'Quantum Processing',
+        'Cloud-Native Architecture',
         'Edge Computing',
-        'Predictive Analytics',
-        'Cloud-Native ERP'
+        'Neural Networks',
+        'Blockchain Security'
     ];
 
     return (
