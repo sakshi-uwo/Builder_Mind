@@ -18,7 +18,7 @@ const Hero = () => {
                         Smarter Planning. Real-time Insights. Predictive Excellence.
                     </p>
                     <div className="hero-cta">
-                        <a href="/dashboard" className="btn btn-primary">Get Started</a>
+                        <a href="http://localhost:5173" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Get Started</a>
                         <a href="/dashboard" className="btn btn-secondary">Dashboard</a>
                     </div>
                 </div>
